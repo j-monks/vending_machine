@@ -51,5 +51,7 @@ public class VendingMachineTest {
     public void canInsertCoin() {
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         assertEquals(.5, vendingMachine.getMoneyBox(), 0.05);
+        //
+        assertEquals(coinType.ONE_PENCE, vendingMachine.insertCoin(CoinType.ONE_PENCE));
     }
 }

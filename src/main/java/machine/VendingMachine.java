@@ -55,7 +55,10 @@ public class VendingMachine {
         return null;
     }
 
-    public void insertCoin(CoinType coin) {
-        this.moneyBox += coin.getCoinValue();
+    public CoinType insertCoin(CoinType coin) {
+        if (coin.getCoinValue() >= .2) {
+            this.moneyBox += coin.getCoinValue();
+        }
+        return coin;
     }
 }
