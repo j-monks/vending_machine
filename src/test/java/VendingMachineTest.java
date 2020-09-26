@@ -40,4 +40,10 @@ public class VendingMachineTest {
         vendingMachine.addProductToInventory(ProductType.CRISPS);
         assertEquals(ProductType.COLA, vendingMachine.getProductTypeByCode(5643));
     }
+
+    @Test
+    public void canGetProductByProductPrice() {
+        vendingMachine.addProductToInventory(ProductType.SWEET);
+        assertEquals(productType.SWEET, vendingMachine.getProductTypeByPrice(.65));
+    }
 }

@@ -42,4 +42,13 @@ public class VendingMachine {
         }
         return null;
     }
+
+    public ProductType getProductTypeByPrice(double price) {
+        for (ProductType product : this.inventory) {
+            if (product.getProductPrice() == price) {
+                return product;
+            }
+        }
+        return null;
+    }
 }
