@@ -4,12 +4,12 @@ import products.ProductType;
 
 import java.util.ArrayList;
 
-public class vendingMachine {
+public class VendingMachine {
 
     private double moneyBox;
     private ArrayList<ProductType> inventory;
 
-    public vendingMachine(double moneyBox) {
+    public VendingMachine() {
         this.moneyBox = 0.00;
         this.inventory = new ArrayList<ProductType>();
     }
@@ -18,8 +18,8 @@ public class vendingMachine {
         return moneyBox;
     }
 
-    public ArrayList<ProductType> getInventory() {
-        return inventory;
+    public int getInventory() {
+        return inventory.size();
     }
 
     public void setMoneyBox(double moneyBox) {
