@@ -29,4 +29,12 @@ public class VendingMachine {
     public void setInventory(ArrayList<ProductType> inventory) {
         this.inventory = inventory;
     }
+
+    public void addProductToInventory(ProductType product) {
+        this.inventory.add(product);
+    }
+
+    public ProductType getProductTypeByCode(String code) {
+
+    }
 }

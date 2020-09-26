@@ -12,7 +12,6 @@ public class VendingMachineTest {
     VendingMachine vendingMachine;
     CoinType coinType;
     ProductType productType;
-    ProductType cola;
 
     @Before
     public void before() {
@@ -28,4 +27,13 @@ public class VendingMachineTest {
     public void canGetMoneyBox() {
         assertEquals(0.00, vendingMachine.getMoneyBox(), 0.5);
     }
+
+    @Test
+    public void canAddProduct() {
+        vendingMachine.addProductToInventory(ProductType.COLA);
+        assertEquals(1, vendingMachine.getInventory());
+    }
+
+    @Test
+    public
 }

@@ -1,14 +1,14 @@
 package products;
 
 public enum ProductType {
-    COLA(1.00, "XZ45"),
-    CRISPS(.05, "YK76"),
-    SWEET(.65, "KQ25");
+    COLA(1.00, 5643),
+    CRISPS(.05, 7430),
+    SWEET(.65, 6473);
 
     private double productPrice;
-    private String productCode;
+    private int productCode;
 
-    ProductType(double productPrice, String productCode) {
+    ProductType(double productPrice, int productCode) {
         this.productPrice = productPrice;
         this.productCode = productCode;
     }
@@ -17,7 +17,7 @@ public enum ProductType {
         return productPrice;
     }
 
-    public String getProductCode() {
+    public int getProductCode() {
         return productCode;
     }
 }
