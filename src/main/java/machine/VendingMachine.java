@@ -34,7 +34,12 @@ public class VendingMachine {
         this.inventory.add(product);
     }
 
-    public ProductType getProductTypeByCode(String code) {
-
+    public ProductType getProductTypeByCode(int code) {
+        for (ProductType product : this.inventory) {
+            if (product.getProductCode() == code) {
+                return product;
+            }
+        }
+        return null;
     }
 }

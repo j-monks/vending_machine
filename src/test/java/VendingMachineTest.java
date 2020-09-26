@@ -35,5 +35,9 @@ public class VendingMachineTest {
     }
 
     @Test
-    public
+    public void canGetProductByProductCode() {
+        vendingMachine.addProductToInventory(ProductType.COLA);
+        vendingMachine.addProductToInventory(ProductType.CRISPS);
+        assertEquals(ProductType.COLA, vendingMachine.getProductTypeByCode(5643));
+    }
 }
