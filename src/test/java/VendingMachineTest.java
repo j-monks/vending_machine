@@ -46,4 +46,10 @@ public class VendingMachineTest {
         vendingMachine.addProductToInventory(ProductType.SWEET);
         assertEquals(productType.SWEET, vendingMachine.getProductTypeByPrice(.65));
     }
+
+    @Test
+    public void canInsertCoin() {
+        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
+        assertEquals(.5, vendingMachine.getMoneyBox(), 0.05);
+    }
 }

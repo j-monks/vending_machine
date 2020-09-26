@@ -1,5 +1,6 @@
 package machine;
 
+import products.CoinType;
 import products.ProductType;
 
 import java.util.ArrayList;
@@ -8,9 +9,11 @@ public class VendingMachine {
 
     private double moneyBox;
     private ArrayList<ProductType> inventory;
+    private double change;
 
     public VendingMachine() {
         this.moneyBox = 0.00;
+        this.change = 0.00;
         this.inventory = new ArrayList<ProductType>();
     }
 
@@ -50,5 +53,9 @@ public class VendingMachine {
             }
         }
         return null;
+    }
+
+    public void insertCoin(CoinType coin) {
+        this.moneyBox += coin.getCoinValue();
     }
 }
