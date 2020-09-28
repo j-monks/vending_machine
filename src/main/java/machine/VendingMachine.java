@@ -102,4 +102,9 @@ public class VendingMachine {
     public double getAmountRequired() {
         return amountRequired;
     }
+
+    public void returnCoinsButton() {
+        coinReturn = moneyBox;
+        setMoneyBox();
+    }
 }

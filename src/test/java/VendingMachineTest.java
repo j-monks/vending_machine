@@ -91,5 +91,15 @@ public class VendingMachineTest {
         assertEquals(1.0, vendingMachine.getCoinReturn(), 0.1);
     }
 
-
+    @Test
+    public void returnCoinsButtonReleasesMoneyBoxCoinsAndSetsMoneyBoxToZero() {
+        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
+        vendingMachine.insertCoin(CoinType.FIVE_PENCE);
+        vendingMachine.insertCoin(CoinType.ONE_POUND);
+        vendingMachine.returnCoinsButton();
+        // coin return is adding the money that has been inserted after returnCoinButton is pressed
+        assertEquals(1.55, vendingMachine.getCoinReturn(), 0.1);
+        // moneyBox is setting back to zero as the money is swapped to coin return
+        assertEquals(0.00, vendingMachine.getMoneyBox(), 0.1);
+    }
 }
