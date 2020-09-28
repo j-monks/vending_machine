@@ -49,9 +49,18 @@ public class VendingMachineTest {
 
     @Test
     public void canInsertCoin() {
-        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
-        assertEquals(.5, vendingMachine.getMoneyBox(), 0.05);
-        //
+        vendingMachine.insertCoin(CoinType.TEN_PENCE);
+        assertEquals(0.10, vendingMachine.getMoneyBox(), 0.01);
+        // checking if inserting an invalid coin spits it back out
         assertEquals(coinType.ONE_PENCE, vendingMachine.insertCoin(CoinType.ONE_PENCE));
     }
+
+    @Test
+    public void canGetProductWhenEnoughMoneyHasBeenInsertedAndCodeHasBeenEntered() {
+        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
+        vendingMachine.insertCoin(CoinType.TEN_PENCE);
+        assertEquals(ProductType.SWEET, vendingMachine.enterCode(6473));
+    }
+
 }

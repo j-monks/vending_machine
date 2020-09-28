@@ -2,7 +2,7 @@ package products;
 
 public enum ProductType {
     COLA(1.00, 5643),
-    CRISPS(.05, 7430),
+    CRISPS(.5, 7430),
     SWEET(.65, 6473);
 
     private double productPrice;
