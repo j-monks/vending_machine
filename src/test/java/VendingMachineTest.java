@@ -1,8 +1,7 @@
 import machine.VendingMachine;
 import org.junit.Before;
 import org.junit.Test;
-import products.CoinType;
-import products.ProductType;
+import products.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,11 +10,16 @@ public class VendingMachineTest {
 
     VendingMachine vendingMachine;
     CoinType coinType;
-    ProductType productType;
+    Crisps crisps;
+    Cola cola;
+    Sweet sweet;
 
     @Before
     public void before() {
         vendingMachine = new VendingMachine();
+        crisps = new Crisps("Lightly Salted", 0.50, 7430);
+        cola = new Cola("Fizzy cola cube", 1.0,5643);
+        sweet = new Sweet("Snickers", 0.65, 6473);
     }
 
     @Test
@@ -30,21 +34,21 @@ public class VendingMachineTest {
 
     @Test
     public void canAddProduct() {
-        vendingMachine.addProductToInventory(ProductType.COLA);
+        vendingMachine.addProductToInventory(cola);
         assertEquals(1, vendingMachine.getInventory());
     }
 
     @Test
     public void canGetProductByProductCode() {
-        vendingMachine.addProductToInventory(ProductType.COLA);
-        vendingMachine.addProductToInventory(ProductType.CRISPS);
-        assertEquals(ProductType.COLA, vendingMachine.getProductTypeByCode(5643));
+        vendingMachine.addProductToInventory(cola);
+        vendingMachine.addProductToInventory(crisps);
+        assertEquals(cola, vendingMachine.getProductByCode(5643));
     }
 
     @Test
     public void canGetProductByProductPrice() {
-        vendingMachine.addProductToInventory(ProductType.SWEET);
-        assertEquals(productType.SWEET, vendingMachine.getProductTypeByPrice(.65));
+        vendingMachine.addProductToInventory(sweet);
+        assertEquals(sweet, vendingMachine.getProductByPrice(.65));
     }
 
     @Test
@@ -57,7 +61,7 @@ public class VendingMachineTest {
 
     @Test
     public void canGetProductWhenEnoughMoneyHasBeenInsertedAndCodeHasBeenEntered() {
-        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.addProductToInventory(sweet);
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         vendingMachine.insertCoin(CoinType.TEN_PENCE);
         vendingMachine.insertCoin(CoinType.FIVE_PENCE);
@@ -70,7 +74,7 @@ public class VendingMachineTest {
 
     @Test
     public void whenIncorrectAmountHasBeenEnteredAmountRequiredPlusNoProduct() {
-        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.addProductToInventory(sweet);
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         vendingMachine.insertCoin(CoinType.FIVE_PENCE);
         vendingMachine.enterCode(6473);
@@ -82,7 +86,7 @@ public class VendingMachineTest {
 
     @Test
     public void addsChangeToTheCoinReturnWhenAmountExceedsProductPrice() {
-        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.addProductToInventory(sweet);
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         vendingMachine.insertCoin(CoinType.FIVE_PENCE);
         vendingMachine.insertCoin(CoinType.ONE_POUND);
@@ -105,7 +109,7 @@ public class VendingMachineTest {
 
     @Test
     public void whenMachineHasInsufficientChangeItWillRequestTheExactAmountToBeEntered() {
-        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.addProductToInventory(sweet);
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         vendingMachine.insertCoin(CoinType.FIVE_PENCE);
         vendingMachine.insertCoin(CoinType.ONE_POUND);

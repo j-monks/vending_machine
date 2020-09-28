@@ -10,7 +10,7 @@ public class CrispsTest {
 
     @Before
     public void before() {
-        crisps = new Crisps("Lightly Salted", 0.65);
+        crisps = new Crisps("Lightly Salted", 0.65, 6473);
     }
 
     @Test

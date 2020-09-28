@@ -1,26 +1,26 @@
 package machine;
 
 import products.CoinType;
-import products.ProductType;
+import products.Product;
 
 import java.util.ArrayList;
 
 public class VendingMachine {
 
     private double moneyBox;
-    private ArrayList<ProductType> inventory;
+    private ArrayList<Product> inventory;
     private double coinReturn;
     private double amountRequired;
     private double change;
-    private ArrayList<ProductType> soldProducts;
+    private ArrayList<Product> soldProducts;
 
     public VendingMachine() {
         this.moneyBox = 0.00;
         this.coinReturn = 0.00;
         this.amountRequired = 0.00;
         this.change = 0.00;
-        this.inventory = new ArrayList<ProductType>();
-        this.soldProducts = new ArrayList<ProductType>();
+        this.inventory = new ArrayList<Product>();
+        this.soldProducts = new ArrayList<Product>();
     }
 
     public double getMoneyBox() {
@@ -47,33 +47,33 @@ public class VendingMachine {
         return coinReturn;
     }
 
-    public void setInventory(ArrayList<ProductType> inventory) {
+    public void setInventory(ArrayList<Product> inventory) {
         this.inventory = inventory;
     }
 
-    public void addProductToInventory(ProductType product) {
+    public void addProductToInventory(Product product) {
         this.inventory.add(product);
     }
 
-    public ProductType getProductTypeByCode(int code) {
-        for (ProductType product : this.inventory) {
-            if (product.getProductCode() == code) {
+    public Product getProductByCode(int code) {
+        for (Product product : this.inventory) {
+            if (product.getCode() == code) {
                 return product;
             }
         }
         return null;
     }
 
-    public ProductType getProductTypeByPrice(double price) {
-        for (ProductType product : this.inventory) {
-            if (product.getProductPrice() == price) {
+    public Product getProductByPrice(double price) {
+        for (Product product : this.inventory) {
+            if (product.getPrice() == price) {
                 return product;
             }
         }
         return null;
     }
 
-    public void sellProduct(ProductType product) {
+    public void sellProduct(Product product) {
         this.soldProducts.add(product);
     }
 
@@ -87,8 +87,8 @@ public class VendingMachine {
     }
 
     public String enterCode(int code) {
-        ProductType product = this.getProductTypeByCode(code);
-        double price = product.getProductPrice();
+        Product product = this.getProductByCode(code);
+        double price = product.getPrice();
         if (this.moneyBox == price) {
             sellProduct(product);
             setMoneyBox();
