@@ -109,7 +109,7 @@ public class VendingMachineTest {
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         vendingMachine.insertCoin(CoinType.FIVE_PENCE);
         vendingMachine.insertCoin(CoinType.ONE_POUND);
-        // coin return is adding the change if too much money has been inserted
+        // if the vending machine doesn't have sufficient change, it will decline the sale and ask for an exact amount
         assertEquals("Insufficient change, please enter exact amount!", vendingMachine.enterCode(6473));
     }
 }
