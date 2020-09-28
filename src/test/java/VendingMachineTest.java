@@ -80,4 +80,16 @@ public class VendingMachineTest {
         assertEquals(0, vendingMachine.getSoldProducts());
     }
 
+    @Test
+    public void addsChangeToTheCoinReturnWhenAmountExceedsProductPrice() {
+        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
+        vendingMachine.insertCoin(CoinType.FIVE_PENCE);
+        vendingMachine.insertCoin(CoinType.ONE_POUND);
+        vendingMachine.enterCode(6473);
+        // coin return is adding the change if too much money has been inserted
+        assertEquals(1.0, vendingMachine.getCoinReturn(), 0.1);
+    }
+
+
 }
