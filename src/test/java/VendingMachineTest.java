@@ -60,7 +60,24 @@ public class VendingMachineTest {
         vendingMachine.addProductToInventory(ProductType.SWEET);
         vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
         vendingMachine.insertCoin(CoinType.TEN_PENCE);
-        assertEquals(ProductType.SWEET, vendingMachine.enterCode(6473));
+        vendingMachine.insertCoin(CoinType.FIVE_PENCE);
+        vendingMachine.enterCode(6473);
+        // product sold because enough money was entered
+        assertEquals(1, vendingMachine.getSoldProducts());
+        // moneyBox returns to zero once product has been sold
+        assertEquals(0.00, vendingMachine.getMoneyBox(), 0.05);
+    }
+
+    @Test
+    public void whenIncorrectAmountHasBeenEnteredAmountRequiredPlusNoProduct() {
+        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
+        vendingMachine.insertCoin(CoinType.FIVE_PENCE);
+        vendingMachine.enterCode(6473);
+        // remaining amount needed to buy product
+        assertEquals(0.10, vendingMachine.getAmountRequired(), 0.05);
+        // didn't sell the product because not enough was inserted
+        assertEquals(0, vendingMachine.getSoldProducts());
     }
 
 }
