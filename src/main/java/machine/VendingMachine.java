@@ -11,12 +11,14 @@ public class VendingMachine {
     private ArrayList<ProductType> inventory;
     private double coinReturn;
     private double amountRequired;
+    private double change;
     private ArrayList<ProductType> soldProducts;
 
     public VendingMachine() {
         this.moneyBox = 0.00;
         this.coinReturn = 0.00;
         this.amountRequired = 0.00;
+        this.change = 0.00;
         this.inventory = new ArrayList<ProductType>();
         this.soldProducts = new ArrayList<ProductType>();
     }
@@ -35,6 +37,10 @@ public class VendingMachine {
 
     public int getSoldProducts() {
         return soldProducts.size();
+    }
+
+    public double getChange() {
+        return change;
     }
 
     public double getCoinReturn() {
@@ -80,14 +86,17 @@ public class VendingMachine {
         return null;
     }
 
-    public ProductType enterCode(int code) {
+    public String enterCode(int code) {
         ProductType product = this.getProductTypeByCode(code);
         double price = product.getProductPrice();
         if (this.moneyBox == price) {
             sellProduct(product);
             setMoneyBox();
-        } else {
+        }
+        if (this.change >= this.moneyBox - price) {
             changeDue(price);
+        } else {
+            return "Insufficient change, please enter exact amount!";
         }
         return null;
     }

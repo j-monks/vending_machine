@@ -102,4 +102,14 @@ public class VendingMachineTest {
         // moneyBox is setting back to zero as the money is swapped to coin return
         assertEquals(0.00, vendingMachine.getMoneyBox(), 0.1);
     }
+
+    @Test
+    public void whenMachineHasInsufficientChangeItWillRequestTheExactAmountToBeEntered() {
+        vendingMachine.addProductToInventory(ProductType.SWEET);
+        vendingMachine.insertCoin(CoinType.FIFTY_PENCE);
+        vendingMachine.insertCoin(CoinType.FIVE_PENCE);
+        vendingMachine.insertCoin(CoinType.ONE_POUND);
+        // coin return is adding the change if too much money has been inserted
+        assertEquals("Insufficient change, please enter exact amount!", vendingMachine.enterCode(6473));
+    }
 }
